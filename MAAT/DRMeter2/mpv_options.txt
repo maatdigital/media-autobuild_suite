@@ -1,0 +1,11 @@
+#--enable-libass
+#--enable-rubberband
+#--enable-lua
+#--lua
+luajit
+#--enable-uchardet
+#--enable-lcms2
+#--enable-manpage-build
+#--enable-egl-angle
+#-enable-libbluray
+#--enable-javascript

@@ -1014,7 +1014,7 @@ if [[ $x264 != no ]]; then
         PKG_CONFIG_PATH="$LOCALDESTDIR/opt/lightffmpeg/lib/pkgconfig:$MINGW_PREFIX/lib/pkgconfig"
         if [[ $standalone = y && $x264 =~ (full|fullv) ]]; then
             _check=("$LOCALDESTDIR"/opt/lightffmpeg/lib/pkgconfig/libav{codec,format}.pc)
-            do_vcs "https://git.ffmpeg.org/ffmpeg.git"
+            do_vcs "https://github.com/maatdigital/FFmpeg.git"
             do_uninstall "$LOCALDESTDIR"/opt/lightffmpeg
             [[ -f "config.mak" ]] && log "distclean" make distclean
             create_build_dir light
@@ -1253,7 +1253,7 @@ if [[ $ffmpeg != "no" ]]; then
     fi
     [[ $ffmpegUpdate = y ]] && enabled_any lib{ass,x264,x265,vpx} &&
         _deps=(lib{ass,x264,x265,vpx}.a)
-    if do_vcs "https://git.ffmpeg.org/ffmpeg.git"; then
+    if do_vcs "https://github.com/maatdigital/FFmpeg.git"; then
 
         do_changeFFmpegConfig "$license"
         [[ -f ffmpeg_extra.sh ]] && source ffmpeg_extra.sh
@@ -1352,9 +1352,9 @@ if [[ $mplayer = "y" ]] &&
         if [[ "$ffmpeg" != "no" ]] &&
             git clone -q "$LOCALBUILDDIR"/ffmpeg-git ffmpeg; then
             pushd ffmpeg >/dev/null
-            git checkout -qf --no-track -B master origin/HEAD
+            git checkout -qf --no-track -B drmeter2-windows origin/HEAD
             popd >/dev/null
-        elif ! git clone "https://git.ffmpeg.org/ffmpeg.git" ffmpeg; then
+        elif ! git clone "https://github.com/maatdigital/FFmpeg.git" ffmpeg; then
             rm -rf ffmpeg
             echo "Failed to get a FFmpeg checkout"
             echo "Please try again or put FFmpeg source code copy into ffmpeg/ manually."
@@ -1366,7 +1366,7 @@ if [[ $mplayer = "y" ]] &&
     if [[ -d ffmpeg ]]; then
         cd_safe ffmpeg
         git fetch -q origin
-        git checkout -qf --no-track -B master origin/HEAD
+        git checkout -qf --no-track -B drmeter2-windows origin/HEAD
         cd_safe ..
     else
         compilation_fail "Finding valid ffmpeg dir"
@@ -1610,7 +1610,7 @@ if [[ $cyanrip != no ]]; then
         if [[ $cyanrip = small ]]; then
             _check=("$LOCALDESTDIR"/opt/cyanffmpeg/lib/pkgconfig/libav{codec,format}.pc)
             if [[ ! -f "$LOCALBUILDDIR/ffmpeg-git/build_successful${bits}_cyan" ]] &&
-                do_vcs "https://git.ffmpeg.org/ffmpeg.git"; then
+                do_vcs "https://github.com/maatdigital/FFmpeg.git"; then
                 do_uninstall "$LOCALDESTDIR"/opt/cyanffmpeg
                 [[ -f "config.mak" ]] && log "distclean" make distclean
                 create_build_dir cyan

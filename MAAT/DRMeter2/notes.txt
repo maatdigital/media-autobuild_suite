@@ -1,0 +1,1 @@
+use lib.exe to generate .lib files using the .def files as input (dont use the ones that media-autobuild creates)
